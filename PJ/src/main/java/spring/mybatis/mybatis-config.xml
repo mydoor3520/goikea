@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 마이바티스 설정 -->
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="autoMappingBehavior" value="FULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="spring.entity.mypage.Myshopping" alias="myshopping"/>
+		<typeAlias type="spring.entity.mypage.Mycartlist" alias="mycartlist"/>
+		<typeAlias type="spring.entity.mypage.Cart_to_buy" alias="cart_to_buy"/>
+		<typeAlias type="spring.entity.mypage.User" alias="user"/>
+		<typeAlias type="spring.entity.admin.Company" alias="company"/>
+		<typeAlias type="spring.entity.admin.Product" alias="product"/>
+		<typeAlias type="spring.entity.admin.ProductOrder" alias="productorder"/>
+		<typeAlias type="spring.entity.admin.ProductList" alias="productlist"/>
+		<typeAlias type="spring.entity.admin.ProductOrderList" alias="productorderlist"/>
+	</typeAliases>
+</configuration>

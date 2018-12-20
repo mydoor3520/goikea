@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user-mapper">
+	
+	<select id="chk_id_email" resultType="int" parameterType="user">
+		SELECT count(*) FROM myinfo WHERE id=#{id} and email=#{email}
+	</select>
+	
+	<select id="selectUser" resultType="user">
+		<![CDATA[
+			select X.* from ( 
+		    	select ROWNUM as rnum, A.*
+				    from (
+				       select * from myinfo order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="searchUserList" resultType="user" parameterType="map">
+		<![CDATA[
+			select X.* from ( 
+			    select ROWNUM as rnum, A.*
+				    from (
+				       select * from myinfo 
+				       					WHERE ${searchOption} LIKE '%'||#{keyword}||'%' order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="searchUserListOptionAll" resultType="user" parameterType="map">
+		<![CDATA[
+			select X.* from ( 
+			    select ROWNUM as rnum, A.*
+				    from (
+				       select * from myinfo WHERE grade LIKE '%'||#{keyword}||'%' or
+				       								 id LIKE '%'||#{keyword}||'%' or
+				       								 name LIKE '%'||#{keyword}||'%' or
+				       								 point LIKE '%'||#{keyword}||'%'
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="detailUser" resultType="user" parameterType="int">
+		SELECT * FROM myinfo WHERE no=#{no}
+	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE myinfo WHERE no=#{no}
+	</delete>
+	
+	<update id="changePw" parameterType="map">
+		UPDATE myinfo SET pw = #{pw}, loop_pw = #{loop_pw}, salt_pw = #{salt_pw} 
+						WHERE no = #{no}
+	</update>
+	
+	<update id="editUserData" parameterType="user">
+		UPDATE myinfo SET grade = #{grade}, point = #{point}, name = #{name}, phone = #{phone}, email = #{email}, 
+								birth = #{birth}, post = #{post}, addr1 = #{addr1}, addr2 = #{addr2} 
+						WHERE no = #{no}
+	</update>
+	
+	<select id="user_totalCount" resultType="int" parameterType="String">
+		select count(*) from myinfo order by no desc 
+	</select>
+	
+	<select id="userSearch_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM myinfo WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+	<select id="userSearchOptionAll_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM myinfo WHERE grade LIKE '%'||#{keyword}||'%' or 
+													 id LIKE '%'||#{keyword}||'%' or 
+													 name LIKE '%'||#{keyword}||'%' or 
+													 point LIKE '%'||#{keyword}||'%' or 
+													 reg LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="company-mapper">
+	
+	<!-- 업체 등록 -->
+	<insert id="insertCompany" parameterType="company">
+		INSERT INTO company VALUES(
+						company_seq.nextval, 
+						#{c_brand}, 
+						#{c_name}, 
+						#{c_representation}, 
+						#{c_registration}, 
+						#{m_name}, 
+						#{m_email}, 
+						#{m_phone}, 
+						#{c_post}, 
+						#{c_addr1}, 
+						#{c_addr2}, 
+						sysdate
+						)
+	</insert>
+	
+	<!-- 업체 목록 조회 -->
+	<select id="selectCompany" resultType="company">
+		<![CDATA[
+			select X.*
+			from ( 
+			
+		    select ROWNUM as rnum, A.*
+		    from (
+		       select * from company order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<!-- 업체 상세 정보 조회 -->
+	<select id="detailCompany" resultType="company" parameterType="int">
+		SELECT * FROM COMPANY WHERE no=#{no}
+	</select>
+	
+	<select id="editCompanyInfo" resultType="company" parameterType="int">
+		SELECT * FROM COMPANY WHERE no=#{no}
+	</select>
+	
+	<update id="editCompanyData" parameterType="company">
+		UPDATE company SET c_brand = #{c_brand}, 
+							c_name = #{c_name}, 
+							c_representation = #{c_representation}, 
+							c_registration = #{c_registration}, 
+							m_name = #{m_name}, 
+							m_email = #{m_email}, 
+							m_phone = #{m_phone}, 
+							c_post = #{c_post}, 
+							c_addr1 = #{c_addr1}, 
+							c_addr2 = #{c_addr2}
+						WHERE no = #{no}
+	</update>
+	
+	<delete id="deleteCompany" parameterType="int">
+		DELETE company WHERE no=#{no}
+	</delete>
+	
+	<select id="getCompany" resultType="company" parameterType="int">
+		SELECT * FROM company WHERE no=#{no}
+	</select>
+	
+	<select id="company_totalCount" resultType="int" parameterType="String">
+		select count(*) from company order by no desc 
+	</select>
+	
+	<select id="searchCompanyList" resultType="company" parameterType="map">
+		<![CDATA[
+			select X.* from (
+				select ROWNUM as rnum, A.* from (
+		    		select * from company 
+		       					WHERE ${searchOption} LIKE '%'||#{keyword}||'%' order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="searchCompanyListOptionAll" resultType="company" parameterType="map">
+		<![CDATA[
+			select X.* from ( 
+		    	select ROWNUM as rnum, A.*
+				    from (
+				       select * from company WHERE c_brand LIKE '%'||#{keyword}||'%' or
+				       								 c_name LIKE '%'||#{keyword}||'%' or
+				       								 c_representation LIKE '%'||#{keyword}||'%' or
+				       								 c_registration LIKE '%'||#{keyword}||'%' or
+				       								 m_name LIKE '%'||#{keyword}||'%' or
+				       								 reg LIKE '%'||#{keyword}||'%' order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="testSearchList" resultType="company" parameterType="map">
+		select * from company WHERE ${searchOption} LIKE '%'||#{keyword}||'%' order by no desc
+	</select>
+	
+	<select id="companySearch_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM company WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+	<select id="companySearchOptionAll_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM company WHERE c_brand LIKE '%'||#{keyword}||'%' or 
+													 c_name LIKE '%'||#{keyword}||'%' or 
+													 c_representation LIKE '%'||#{keyword}||'%' or 
+													 c_registration LIKE '%'||#{keyword}||'%' or 
+													 m_name LIKE '%'||#{keyword}||'%' or 
+													 reg LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

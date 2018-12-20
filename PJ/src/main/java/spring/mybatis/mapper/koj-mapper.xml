@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+	<insert id="productsave" parameterType="map">
+		insert into product
+		values(
+		product_seq.nextval,
+		#{major},
+		#{sub},
+		#{p_name},
+		#{p_price},
+		#{d_price},
+		#{d_com},
+		sysdate,
+		#{img_1},
+		#{img_2},
+		#{img_3},
+		#{img_4},
+		#{img_5},
+		'FALSE',
+		#{inventory},
+		#{opt},
+		#{content_img1},
+		#{content_img2},
+		#{content_img3},
+		#{content_img4},
+		#{content_img5}
+		)
+	</insert>
+
+
+	<select id="detailProduct" resultType="product"
+		parameterType="int">
+		select * from product where no=#{no}
+	</select>
+	
+	
+	
+	<select id="detailProductorder" resultType="productorder"
+		parameterType="int">
+		select * from order_list where order_num=#{order_num}
+	</select>
+
+	<!-- 상품삭제 -->
+
+	<delete id="deleteProduct" parameterType="product">
+		delete product where
+		no=#{no}
+	</delete>
+	
+	<!-- 오더리스트 삭제 -->
+	
+	<delete id="deleteProductorder" parameterType="productorder">
+		delete order_list where
+		order_num=#{order_num}
+	</delete>
+
+
+
+	<!-- 상품 수정 -->
+	
+	<update id="N_displayProduct" parameterType="product">
+	update product set
+		display = 'FALSE' where NO=#{no}
+	</update>
+	
+	<update id="Y_displayProduct" parameterType="product">
+	update product set
+		display = 'TRUE' where NO=#{no}
+	</update>
+	
+	<select id="editProductInfo" resultType="product"
+		parameterType="int">
+		select * from product where no=#{no}
+	</select>
+
+
+	<update id="editProductData" parameterType="product">
+		update product set
+		major = #{major},
+		sub = #{sub},
+		p_name = #{p_name},
+		p_price = #{p_price},
+		d_price = #{d_price},
+		img_1 = #{img_1},
+		inventory = #{inventory},
+		opt = #{opt},
+		content_img1 = #{content_img1}
+		where no = #{no}
+	</update>
+	
+		<!-- 상품 수정 -->
+	
+	
+	
+	<select id="editProductorderInfo" resultType="productorder"
+		parameterType="int">
+		select * from order_list where order_num=#{order_num}
+	</select>
+
+
+	<update id="editProductorderData" parameterType="productorder">
+		update order_list set
+		rcv_name = #{rcv_name},
+		rcv_post = #{rcv_post},
+		rcv_addr1 = #{rcv_addr1},
+		rcv_addr2 = #{rcv_addr2},
+		rcv_phone = #{rcv_phone},
+		d_comment = #{d_comment},
+		pay_method = #{pay_method},
+		pay_status = #{pay_status},
+		memo = #{memo},
+		d_number = #{d_number}
+		where order_num = #{order_num}
+	</update>
+
+
+
+
+	<!-- 리스트 페이징 -->
+
+
+
+	<select id="product_list" resultType='product'
+		parameterType="map">
+		<![CDATA[
+		select X.no, X.major, X.sub, X.p_name, X.p_price,X.d_price,X.d_com,X.reg,X.img_1,X.img_2,X.img_3,X.img_4,X.img_5,X.display,X.inventory,X.opt,X.content_img1,X.content_img2,X.content_img3,X.content_img4,X.content_img5
+	from ( 
+	
+    select ROWNUM as rnum,A.no, A.major, A.sub, A.p_name, A.p_price,A.d_price,A.d_com,A.reg,A.img_1,A.img_2,A.img_3,A.img_4,A.img_5,A.display,A.inventory,A.opt,A.content_img1,A.content_img2,A.content_img3,A.content_img4,A.content_img5
+    from (
+       select * from product order by no desc
+	 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+ 
+]]>
+	</select>
+
+
+	<select id="product_totalCount" resultType="int"
+		parameterType="String">
+		<![CDATA[
+		select count(*) from product order by no desc 
+	]]>
+	</select>
+
+
+
+	<!-- 오더 리스트 페이징 -->
+	 
+
+
+	<select id="productorder_list" resultType='productorder'
+		parameterType="map">
+		
+		<![CDATA[
+		select X.order_num, X.pay_number, X.p_num, X.p_quantity, X.p_total,X.user_number,X.user_post,X.user_phone,X.rcv_post,X.rcv_phone,X.d_number,X.p_name,X.p_option,X.username,X.user_addr1,X.user_addr2,X.rcv_name,X.rcv_addr1,X.rcv_addr2,X.d_comment,X.pay_method,X.pay_status,X.cart,X.memo,X.order_reg,X.img 
+	from ( 
+	
+    select ROWNUM as rnum,A.order_num,A.pay_number,A.p_num,A.p_quantity,A.p_total,A.user_number,A.user_post,A.user_phone,A.rcv_post,A.rcv_phone,A.d_number,A.p_name,A.p_option,A.username,A.user_addr1,A.user_addr2,A.rcv_name,A.rcv_addr1,A.rcv_addr2,A.d_comment,A.pay_method,A.pay_status,A.cart,A.memo,A.order_reg,A.img
+    from (
+        select * from order_list WHERE pay_status!='' or pay_status!='결제대기' order by  order_reg DESC
+	 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+ 
+]]>
+	</select>
+
+
+	<select id="productorderlist_totalCount" resultType="int"
+		parameterType="String">
+		<![CDATA[
+		select count(*) from order_list WHERE pay_status!='' or pay_status!='결제대기' 
+	]]>
+	</select>
+
+	<select id="searchProductList" resultType="product" parameterType="map">
+		<![CDATA[
+			select X.*
+			from ( 
+		    select ROWNUM as rnum, A.*
+		    from (
+		       select * from product 
+		       					WHERE ${searchOption} LIKE '%'||#{keyword}||'%' order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+	
+	<select id="searchProductListOptionAll" resultType="product" parameterType="map">
+		<![CDATA[
+			select X.*
+			from ( 
+		    select ROWNUM as rnum, A.*
+		    from (
+		       select * from product WHERE major LIKE '%'||#{keyword}||'%' or 
+													 sub LIKE '%'||#{keyword}||'%' or 
+													 p_name LIKE '%'||#{keyword}||'%' order by no desc
+			 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle}
+		]]>
+	</select>
+
+
+
+
+	<select id="productSearch_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM product WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+	<select id="productSearchOptionAll_totalCount" resultType="int" parameterType="map">
+		select count(*) from (
+						SELECT * FROM product WHERE  
+													 major LIKE '%'||#{keyword}||'%' or 
+													 sub LIKE '%'||#{keyword}||'%' or 
+													 p_name LIKE '%'||#{keyword}||'%'
+					)A order by no desc 
+	</select>
+	
+</mapper>
+
+
+
+
+

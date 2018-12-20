@@ -1,0 +1,55 @@
+/*encoding*/
+@charset "UTF-8";
+<!important>
+<!-- 영역 구분 용 -->
+.div-flex {
+	font-size:0;
+}
+
+<!-- 사이트 CSS -->
+.empty-row {
+	height: 10px;
+}
+/*header*/
+.header-ktw {
+	width: 100%;
+	margin: 0 auto;
+	/* order: 1; */
+}
+
+/*aside*/
+.aside-ktw {
+	width:20%;
+	height: 500px;
+	font-family: 'Nanum Gothic';
+    background-color: cornflowerblue;
+	order: 1;
+	display:inline-block;
+}
+
+.aside-ktw>.left {
+	list-style: none;
+	text-align: center;
+}
+
+.aside-ktw>.left>li {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 20px;
+	font-size: 14px;
+}
+
+/*section*/
+.section-ktw {
+	display:inline-block;
+	width:80%;
+	text-align: center;
+    background-color: antiquewhite;
+    flex-grow: 1;
+	order: 2;
+}
+
+/*footer*/
+.footer-ktw {
+	/* order: 4; */
+}

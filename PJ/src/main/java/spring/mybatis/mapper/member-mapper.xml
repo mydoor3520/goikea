@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+
+	<!-- <insert id="insert" parameterType="spring.entity.Record"> -->
+	<insert id="regist_mem" parameterType="map">
+		insert into myinfo
+		values(myinfo_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{email},
+		#{birth}, #{post}, #{addr1}, #{addr2}, 0, 'bronze', sysdate,
+		#{loop_pw}, #{salt_pw})
+	</insert>
+
+	<select id="login" resultType="user" parameterType="String">
+		SELECT * FROM
+		myinfo WHERE id=#{id}
+	</select>
+
+	<select id="chk_id" resultType="int" parameterType="String">
+		SELECT
+		count(*) FROM myinfo WHERE id=#{id}
+	</select>
+
+	<select id="getuser" resultType="user" parameterType="String">
+		SELECT *
+		FROM myinfo WHERE no=#{no}
+	</select>
+
+	<delete id="customer_out" parameterType="String">
+		delete myinfo where
+		no=#{user_no}
+	</delete>
+
+	<select id="trylogin" resultType="user" parameterType="String">
+		SELECT *
+		FROM myinfo WHERE id=#{id} and pw=#{pw}
+	</select>
+
+	<select id="shopping_list" resultType='myshopping'
+		parameterType="map">
+		<![CDATA[
+ 	select X.* from (
+    select ROWNUM as rnum, A.*
+    from (
+        select order_list.*, img_1 from product, order_list  WHERE user_number=#{user_num} and cart='FALSE'
+	 )A where ROWNUM <= #{endArticle})X where X.rnum >= #{startArticle} order by order_reg DESC
+]]>
+	</select>
+
+
+	<select id="cart_list" resultType='mycartlist'
+		parameterType="map">
+	<![CDATA[
+	
+		 select X.* from ( 
+	
+    		select ROWNUM as rnum, A.*
+   			from (
+        		select d_com, d_price, order_list.*, img_1 from product, order_list  WHERE user_number=#{user_num} and cart='TRUE' and product.no=order_list.p_num order by order_num DESC
+				 )A 
+	 		where ROWNUM <= #{endArticle}
+	 		)X 
+		 where X.rnum >= #{startArticle}
+		 ]]>
+	</select>
+
+	<update id="edit_myprofile" parameterType="map">
+		UPDATE myinfo SET
+		phone = #{phone}, birth = #{birth}, email = #{email}, post = #{post},
+		addr1 = #{addr1}, addr2 = #{addr2}
+		WHERE no = #{no}
+	</update>
+	
+	<update id="change_pw" parameterType="map">
+		UPDATE myinfo SET
+		pw = #{pw}, loop_pw = #{loop_pw}, salt_pw = #{salt_pw}
+		WHERE no = #{no}
+	</update>
+
+	<select id="shoppinglist_totalCount" resultType="int"
+		parameterType="String">
+		<![CDATA[
+		select count(*) from order_list WHERE user_number=#{user_num} and cart!='true' 
+	]]>
+	</select>
+
+	<select id="cartlist_totalCount" resultType="int"
+		parameterType="String">
+		<![CDATA[
+		select count(*) from order_list WHERE user_number=#{user_num} and cart='TRUE' 
+	]]>
+	</select>
+
+	<select id="cart_to_buy" parameterType="String"
+		resultType="cart_to_buy">
+		select * from(
+		select rownum as rnum, order_list.*
+		from order_list
+		where pay_number=#{pay_number})A
+	</select>
+
+	<delete id="cart_del" parameterType="String">
+		delete order_list where
+		order_num=#{order_num}
+	</delete>
+
+	<!-- 마이페이지에서 현황조회 -->
+	<select id="find_buying" resultType="map" parameterType="String">
+		select (select count(*) from order_list where pay_status='결제대기' and user_number=#{userNo})A,
+		(select count(*) from order_list where pay_status='배송준비' and  user_number=#{userNo})B,
+		(select count(*) from order_list where pay_status='배송중' and  user_number=#{userNo})C,
+		(select count(*) from order_list where pay_status='배송완료' and  user_number=#{userNo})D,
+		(select count(*) from order_list where
+		pay_status='환불중' or pay_status='환불완료' or pay_status='교환중' or
+		pay_status='교환완료' or pay_status='취소중' or pay_status='취소완료' and  user_number=#{userNo})E 
+		
+		from 
+		
+		(select count(*) from order_list where pay_status='결제대기' ),
+		(select count(*) from order_list where pay_status='배송준비' ),
+		(select count(*) from order_list where pay_status='배송중' ),
+		(select count(*) from order_list where pay_status='배송완료' ),
+		(select count(*) from order_list where pay_status='환불중' or 
+		pay_status='환불완료' or pay_status='교환중' or 
+		pay_status='교환완료' or pay_status='취소중' or pay_status='취소완료')
+	</select>
+
+	
+	
+</mapper>

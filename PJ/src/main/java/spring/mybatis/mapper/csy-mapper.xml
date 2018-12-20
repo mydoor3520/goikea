@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<!-- 홈(home) -->
+	<select id="home_new" resultType="map">
+		<![CDATA[
+			SELECT ROWNUM AS RNUM, A.*
+			FROM (SELECT *
+				  FROM PRODUCT
+				  ORDER BY NO DESC) A
+			WHERE ROWNUM<=4 and display='TRUE'
+		]]>
+	</select>
+	<select id="home_best" resultType="map">
+		<![CDATA[
+			select rownum, d_com, p_name, p_price, img_1, c_p_name
+			from (select B.d_com, A.p_name, B.p_price, B.img_1, count(A.p_name) c_p_name
+				  from order_list A inner join product B on A.p_name=B.p_name
+				  group by B.d_com, A.p_name, B.p_price, B.img_1
+				  order by c_p_name desc)
+			where rownum<=4
+		]]>
+	</select>
+	<!-- 리스트(list) -->
+	<select id="list_totalCount" resultType="int" parameterType="map">
+		SELECT COUNT(*) FROM PRODUCT WHERE MAJOR=#{major} AND SUB=#{sub} and display='TRUE'
+	</select>
+
+	<select id="select_category" resultType="map" parameterType="String">
+		SELECT * FROM CATEGORY WHERE MAJOR=#{MAJOR}
+	</select>
+	
+	<select id="get_order_number" resultType="map" parameterType="int">
+		SELECT order_num FROM order_list WHERE pay_number=#{pay_group}
+	</select>
+	
+	
+	<select id="select_item" resultType="map" parameterType="map">
+		<![CDATA[
+			SELECT *
+			FROM(SELECT ROWNUM AS RNUM,A.NO,A.MAJOR,A.SUB,A.P_NAME,A.P_PRICE,A.D_PRICE,A.D_COM,A.REG,A.IMG_1,A.IMG_2,A.IMG_3,A.IMG_4,A.IMG_5,A.DISPLAY,A.INVENTORY,A.OPT, A.CONTENT_IMG1,  A.CONTENT_IMG2,  A.CONTENT_IMG3,  A.CONTENT_IMG4,  A.CONTENT_IMG5
+				 FROM(SELECT *
+					  FROM PRODUCT
+					  WHERE MAJOR=#{major} AND SUB=#{sub}
+					  ORDER BY ${sort} ${method}) A
+			 	 WHERE ROWNUM<=#{endArticle} and A.display='TRUE') B 		
+	 		WHERE B.RNUM>=#{startArticle}
+	 	]]>
+	</select>
+	<select id="search" resultType="map" parameterType="String">
+		select * from product where p_name like '%' || #{word} || '%' and display='TRUE'
+	</select>
+	<!-- 디테일(detail) -->
+	<select id="detail" parameterType="int" resultType="map">
+		SELECT * FROM PRODUCT INNER JOIN SY_COM ON PRODUCT.D_COM=SY_COM.SELLER AND PRODUCT.NO=#{no}  and display='TRUE'
+	</select>
+	<insert id="cart_insert" parameterType="map">
+		INSERT INTO ORDER_LIST VALUES(ORDER_LIST_SEQ.NEXTVAL,#{pay_group},#{p_number},#{p_name},#{p_option},#{p_quantity},#{p_total},#{user_number},#{user_name},#{user_post},#{user_addr1},#{user_addr2},#{user_phone},'','','','','','','','','TRUE','','',#{img},'')
+	</insert>
+	<select id="load_product_name" parameterType="int" resultType="String">
+		SELECT P_NAME FROM PRODUCT WHERE NO=#{product_number}
+	</select>
+	<select id="load_product_price" parameterType="int" resultType="int">
+		SELECT P_PRICE FROM PRODUCT WHERE NO=#{product_number}
+	</select>
+	<select id="load_order_list_nextval" resultType="int">
+		SELECT order_list_seq.nextval FROM dual
+	</select>
+	<select id="pay_number_list" parameterType="map" resultType="map">
+		select A.* from
+			(select ROWNUM as rnum, order_list.*, product.IMG_1 from product, order_list 
+ 			where 
+ 			pay_number=#{pay_number} and product.no=order_list.p_num)A 
+ 		where A.rnum=#{rownum}
+	</select>
+	<select id="order_num_list" parameterType="int" resultType="map">
+		select * from order_list where order_num=#{order_num}
+	</select>
+	<select id="pay_number_count" parameterType="int" resultType="int">
+		select count(*) from order_list where pay_number=#{pay_number}
+	</select>
+	
+	<!-- 리뷰(review) -->
+	<select id="review_totalCount" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM REVIEW WHERE PRODUCT_NUMBER=#{product_number}
+	</select>
+	
+	<select id="detail_review" parameterType="map" resultType="map">
+		<![CDATA[
+			select *
+			from (select rownum as rnum, a.product_number, a.satisfy, a.writer, a.content, a.reg
+				from(select *
+					from review
+					where product_number=#{review_product_number}
+					order by no asc) a
+				where rownum<=#{review_endArticle}) b
+			where b.rnum>=#{review_startArticle}
+		]]>
+	</select>
+	
+	<!-- QNA(qna) -->
+	<select id="qna_totalCount" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM QNA WHERE PRODUCT_NUMBER=#{product_number}
+	</select>
+	
+	<insert id="qna_insert" parameterType="map">
+		insert into qna values(qna_seq.nextval,#{product_number},#{grp_max},1,#{writer},#{content},sysdate)
+	</insert>
+	<insert id="qna_insert_reply" parameterType="map">
+		insert into qna values(qna_seq.nextval,#{product_number},#{grp_max},2,'NOAH','아직 답변이 등록되지 않았습니다',sysdate)
+	</insert>
+	<select id="qna_select" resultType="map" parameterType="int">
+		<![CDATA[
+			select *
+			from (select rownum as rnum, a.no, a.product_number, a.grp, a.lev, a.writer, a.content, a.reg
+				from(select *
+					from qna 
+					where product_number=#{qna_product_number}
+					order by grp desc, lev asc) a
+				where rownum<=#{qna_endArticle}) b
+			where b.rnum>=#{qna_startArticle}
+		]]>
+	</select>
+	<select id="qna_grp_max" resultType="int">
+		SELECT MAX(GRP) FROM QNA
+	</select>
+	
+	<!-- 구매 -->
+	<update id="buy" parameterType="map">	
+		update order_list
+		set rcv_name=#{rcv_name},rcv_post=#{rcv_post},rcv_addr1=#{rcv_addr1},rcv_addr2=#{rcv_addr2},rcv_phone=#{rcv_phone},d_comment=#{d_comment},pay_method='무통장',pay_status='결제대기',order_reg=sysdate, cart='FALSE'
+		<choose>
+			<when test="EachOrGroup.equals('pay_number')">
+				where pay_number = #{EachOrGroup_value}
+			</when>
+			<otherwise>
+				where order_num = #{EachOrGroup_value}		
+			</otherwise>
+		</choose>
+	</update>
+	
+	<select id="load_product_img" parameterType="int" resultType="String">
+		select img_1 from product where no=#{product_number}
+	</select>
+	
+	<select id="getUserNo" parameterType="int" resultType="int">
+		select user_number from order_list where pay_number=#{pay_number}
+	</select>
+	<select id="getUserNo_order" parameterType="int" resultType="int">
+		select user_number from order_list where order_num=#{order_num}
+	</select>
+	<!-- 방문자 통계 -->
+	<insert id="insertVisitor" parameterType="map">
+		INSERT INTO TB_VISITOR VALUES(VISITOR_SEQ.NEXTVAL, #{VISIT_IP}, SYSDATE, #{VISIT_SESSION})
+	</insert>
+	<select id="countSession" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM TB_VISITOR WHERE VISIT_SESSION=#{VISIT_SESSION}
+	</select>
+	<select id="countIP" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM TB_VISITOR WHERE VISIT_IP=#{VISIT_IP}
+	</select>
+	<select id="countAll_today" resultType="int">
+		SELECT COUNT(*) FROM TB_VISITOR WHERE TO_CHAR(VISIT_TIME,'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')
+	</select>
+	<select id="countAll_all" resultType="int">
+		SELECT COUNT(*) FROM TB_VISITOR
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
