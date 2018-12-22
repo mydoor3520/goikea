@@ -1,0 +1,151 @@
+/*encoding*/
+@charset "UTF-8";
+.input-control {
+	border-radius: 5px;
+	border: 1px solid darkgray;
+	padding: 8px;
+	margin: 8 0;
+	vertical-align: top;
+}
+
+.button-control {
+	border-radius: 5px;
+	border: 1px solid darkgray;
+	padding: 6.5px;
+	margin: 8 0;
+	vertical-align: top;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+}
+
+p {
+	margin-bottom: 8px;
+}
+
+#left {
+	width: 70%;
+	font-size: 16px;
+	display: inline-block;
+	text-align: left;
+	font-family: 'Nanum Gothic';
+}
+
+#info {
+	margin-bottom: 50px;
+}
+
+#info>.title {
+	font-size: 20px;
+}
+
+#info>hr {
+	width: 20%;
+	margin-left: 0;
+}
+
+#info>input[type=text] {
+	width: 400px;
+}
+
+#info>.phone, #info>.email {
+	width: 400px;
+	display: inline-block;
+}
+
+.row {
+	width: 100%;
+	display: block;
+	line-height: 40px;
+	text-align: left;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]+label {
+	display: inline-block;
+	width: 40px;
+	height: 20px;
+	position: relative;
+	-webkit-transition: 0.3s;
+	transition: 0.3s; margin 0;
+	box-sizing: border-box;
+}
+
+input[type="checkbox"]+label:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 20px;
+	height: 20px;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+#mds_3:checked+label.green {
+	background: #AEDCAE;
+}
+
+#mds_3:checked+label.green:after {
+	background: #5CB85C;
+}
+
+#mds_3:checked+label:after {
+	left: calc(100% - 20px);
+}
+
+#mds_3+label {
+	background: #ddd;
+	height: 3px;
+}
+
+#mds_3+label:after {
+	background: #fff;
+	border-radius: 50%;
+	top: -9px;
+	box-shadow: 0px 0px 3px #aaa;
+}
+
+#right {
+	width: 30%;
+	font-size: 16px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+}
+
+#right>.pay_method {
+	font-size: 0
+}
+
+#right>.pay_method>ul {
+	list-style: none;
+	padding: 0;
+}
+
+#right>.pay_method>ul>li {
+	width: 101px;
+	height: 93px;
+	display: inline-block;
+	border-radius: 100%;
+	padding-top: 8px;
+	margin: 12px;
+	cursor: pointer;
+	line-height: 15px;
+}
+
+#right>.pay_method>ul>li:after {
+	border: 1px solid black;
+}
+
+#right>.pay_method>ul>li>label>span {
+	font-size: 12px;
+	margin-bottom: 0;
+}

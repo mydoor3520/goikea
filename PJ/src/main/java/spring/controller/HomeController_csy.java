@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import spring.entity.mypage.User;
 import spring.repository.ProductDaoImpl;
+import spring.repository.mypage.UserDao;
 import spring.service.admin.VisitCountDAO;
 import spring.service.mypage.Paging;
 
@@ -31,6 +33,8 @@ public class HomeController_csy {
 	
 	@Autowired
 	Paging paging;
+	@Autowired
+	private UserDao udao;
 	@Autowired
 	HttpSession session;
 	@Autowired
@@ -133,7 +137,8 @@ public class HomeController_csy {
 							Model model) {
 		
 		String user_no = session.getAttribute("user_no").toString();
-		
+		User user = udao.get_user_byNo(user_no);
+		model.addAttribute("user",user);
 		List<Object> list = new ArrayList<>();
 		Map<String,Object> parameter = new HashMap<>();
 		

@@ -378,7 +378,7 @@
                         <a id="confirm_buy">구매하기</a>
                     </div>
                 </div>
-            	    
+            	<!--   
                 <div class="right-content">
                		<div class="list">
 						<p class="odd">판매자</p>
@@ -396,7 +396,8 @@
 	                        <button class="more_btn">판매자 상품 더보기</button>
 	                    </div>
                     </div>
-                </div>
+                </div> 
+                -->  
             </div>
                 
             <br><br><br>

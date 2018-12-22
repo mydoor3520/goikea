@@ -19,8 +19,8 @@ public class DatabaseConfiguration {
 		source.setDriverClassName("oracle.jdbc.OracleDriver");
 		//source.setUrl("jdbc:oracle:thin:@192.168.6.37:1521:xe");
 		source.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		source.setUsername("sw5");
-		source.setPassword("sw5");
+		source.setUsername("sw51");
+		source.setPassword("sw51");
 		source.setMaxTotal(20);
 		source.setMaxIdle(10);
 		source.setMaxWaitMillis(3000);

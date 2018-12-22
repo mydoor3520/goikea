@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
 <html>
     <head>
         <title>#NOAH</title>
@@ -50,7 +51,7 @@
         
         <section class="section">
         	<div class="main-banner">
-        		<img src="${pageContext.request.contextPath }/resources/images/bigger/main-banner.jpg" style="width:1280px;">
+        		<img src="${pageContext.request.contextPath }/resources/images/bigger/main-banner.jpg" style="width:100%;">
         	</div>
         	<div id="sub-banner">
         		<ul id="ul1">
@@ -102,13 +103,16 @@
         		<div class="list">
         			<c:forEach var="item" items="${new_arrivals }">
         				<div class="each-list">
-        					<a href="/PJ/detail?no=${item.NO}"><img
+        					<a href="detail?no=${item.NO}"><img
 									style="height: 240px; width: 240px;"
-									src="${pageContext.request.contextPath}/resources/images/page_contents/${item.IMG_1}">
+									src="${root}/resources/images/page_contents/${item.IMG_1}">
 								</a>
         					<p class="D_COM">${item.D_COM}</p>
         					<p class="P_NAME">${item.P_NAME }</p>
-        					<p class="P_PRICE">${item.P_PRICE }</p>		
+        					
+        					<p class="P_PRICE">
+        					<strong><fmt:formatNumber pattern="#,##0원" value="${item.P_PRICE }">
+        					</fmt:formatNumber></strong></p>
         				</div>
         			</c:forEach>
         		</div>

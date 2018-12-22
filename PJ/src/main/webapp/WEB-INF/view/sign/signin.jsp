@@ -21,24 +21,24 @@
 	</div>
 	<section class="login-sub-title">
 		<div class="left">
-			<p class="p1">가입 축하 쿠폰 발급</p>
+			<p class="p1">가입 축하 포인트 발급</p>
 			<div class="empty-row"></div>
 			<p class="p2">
-				신규 회원가입 고객님께<br> 5,000원 할인 쿠폰을 드립니다<br> [가입시 자동 발급/즉시 사용 가능]
+				신규 회원가입 고객님께<br> 5,000포인트를 드립니다<br> [가입시 자동 발급/즉시 사용 가능]
 			</p>
 		</div>
 		<div class="center">
 			<p class="p1">구매 축하 사은품</p>
 			<div class="empty-row"></div>
 			<p class="p2">
-				차량 구매 고객님께<br> 다양한 종류의 사은품을<br> 무료로 제공해드립니다.
+				상품 구매 고객님께<br> 다양한 종류의 사은품을<br> 무료로 제공해드립니다.
 			</p>
 		</div>
 		<div class="right">
 			<p class="p1">상품후기 작성 이벤트</p>
 			<div class="empty-row"></div>
 			<p class="p2">
-				차량구매 후<br> 홈페이지에 포토후기를 남겨주시면<br> 5,000원을 현금으로 환급해드립니다.
+				상품 구매 후<br> 홈페이지에 포토후기를 남겨주시면<br> 5,000원을 현금으로 환급해드립니다.
 			</p>
 		</div>
 	</section>

@@ -14,7 +14,8 @@ a:hover {color: black;text-decoration: underline;}
          <c:when test="${sessionScope.grade == 'admin' or sessionScope.grade == 'manager'}">
             <div class="top">
                <a href="${root}/signout">로그아웃</a> | 
-               <a href="${root}">이벤트</a> | 
+              <!--    <a href="${root}">고객센터(미완성)</a> | 
+               <a href="${root}">이벤트</a>    --> 
                <a href="${root}/admin/home"> 관리자</a>
             </div>
          </c:when>   
@@ -23,7 +24,8 @@ a:hover {color: black;text-decoration: underline;}
             <div class="top">
                <a href="${root}/signin">로그인</a> | 
                <a href="${root}/signup">회원가입</a> | 
-               <a href="${root}">이벤트</a> 
+               <!--    <a href="${root}">고객센터(미완성)</a> | 
+               <a href="${root}">이벤트</a>    --> 
             </div>
          </c:when>
          <%-- 로그인한 일반 사용자일 경우--%>
@@ -34,8 +36,8 @@ a:hover {color: black;text-decoration: underline;}
                <a href="${root}/customer/myshopping">주문/배송</a> | 
                <a href="${root}/customer/mycart">장바구니</a> | 
                <a href="${root}/customer/mycart"></a> | 
-               <a href="${root}">고객센터(미완성)</a> | 
-               <a href="${root}">이벤트</a> 
+       <!--    <a href="${root}">고객센터(미완성)</a> | 
+               <a href="${root}">이벤트</a>    --> 
             </div>
          </c:otherwise>
       </c:choose>

@@ -22,7 +22,7 @@
 		<jsp:include page="./template/header.jsp"></jsp:include>
 	    
 	    <section class="section" style="text-align: center;">
-	        <p class="p30 b">주문해 주셔서 감사합니다.</p>
+	        <p class="p30">주문해 주셔서 감사합니다.</p>
 	        <p class="p14">아래 주문사항을 확인해주세요. 곧, 확인 이메일이 발송됩니다.</p>
 	        <br>
 	        <p class="p20">입금정보</p>

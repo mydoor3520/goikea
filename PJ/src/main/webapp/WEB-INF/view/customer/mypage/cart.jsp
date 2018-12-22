@@ -35,23 +35,23 @@ img {
 <head>
 <title>start-template</title>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+	src="${root}/resources/js/jquery.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/api/modal/js/jquery.modal.js"></script>
 
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/searchBtn.css">
+	href="${root}/resources/css/searchBtn.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/api/modal/css/jquery.modal.css">
+	href="${root}/resources/api/modal/css/jquery.modal.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/common.css">
+	href="${root}/resources/css/common.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/pjh.css">
+	href="${root}/resources/css/pjh.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/pagination.css">
+	href="${root}/resources/css/pagination.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/searchBtn.css">
+	href="${root}/resources/css/searchBtn.css">
 
 <script>
 jQuery(document).ready(function(){
@@ -130,9 +130,9 @@ function buyall(){
 					<tr>
 						<td style="font-color:red;"><input type="checkbox" value="${mycart.order_num}" name="chk"></td>
 						<td style="text-align: center;"><div id="shop_container">
-								<a href="/PJ/detail?no=${mycart.p_num}"><img
+								<a href="../detail?no=${mycart.p_num}"><img
 									style="height: 100px; width: 100px;"
-									src="${pageContext.request.contextPath}/resources/images/page_contents/${mycart.img_1}">
+									src="${root}/resources/images/page_contents/${mycart.img_1}">
 								</a>
 							</div></td>
 						<td>

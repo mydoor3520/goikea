@@ -7,7 +7,7 @@ body{margin: 0 auto;padding-top: 10px;font-family: 'Nanum Gothic'; width: 100%;}
 .empty-row100{height: 100px;}
 
 /*header*/
-.header{width: 1280px;margin: 0 auto;}
+.header{width: 100%;margin: 0 auto;}
 .header > .top{text-align: right;font-family: 'Nanum Gothic';font-size: 12px}
 .header > .mid{text-align: center;margin: 20px 0;}
 .header > .bot{list-style: none;text-align: center;}
@@ -16,7 +16,7 @@ body{margin: 0 auto;padding-top: 10px;font-family: 'Nanum Gothic'; width: 100%;}
 .header > .bot > li > a:hover {color: black;text-decoration: underline;}
 
 /*section*/
-.section{width: 1280px; margin: 0 auto;text-align: center;margin-top: 20px; margin-bottom: 20px;}
+.section{width: 100%; margin: 0 auto;text-align: center;margin-top: 20px; margin-bottom: 20px;}
 
 
 /*footer*/

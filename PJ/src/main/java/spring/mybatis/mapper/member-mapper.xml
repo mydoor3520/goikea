@@ -8,7 +8,7 @@
 	<insert id="regist_mem" parameterType="map">
 		insert into myinfo
 		values(myinfo_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{email},
-		#{birth}, #{post}, #{addr1}, #{addr2}, 0, 'bronze', sysdate,
+		#{birth}, #{post}, #{addr1}, #{addr2}, 5000, 'bronze', sysdate,
 		#{loop_pw}, #{salt_pw})
 	</insert>
 

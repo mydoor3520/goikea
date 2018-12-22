@@ -117,7 +117,7 @@ img {
 					<tr>
 						<td>${myshopping.pay_number}</td>
 						<td style="text-align: center;"><div id="shop_container">
-								<a href="/PJ/detail?no=${myshopping.p_num}"><img
+								<a href="../detail?no=${myshopping.p_num}"><img
 									style="height: 100px; width: 100px;"
 									src="${pageContext.request.contextPath}/resources/images/page_contents/${myshopping.img_1}">
 								</a>

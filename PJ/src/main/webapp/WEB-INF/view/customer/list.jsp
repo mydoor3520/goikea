@@ -59,7 +59,9 @@
 	                            <img src="${pageContext.request.contextPath}/resources/images/page_contents/${item.IMG_1 }" style="width:240px; height:240px;">
 	                            <p class="company">${item.D_COM }</p>
 	                            <p class="name">${item.P_NAME }</p>
-	                            <p class="price">${item.P_PRICE }</p>
+	                           <p class="price">
+        					<strong><fmt:formatNumber pattern="#,##0원" value="${item.P_PRICE }">
+        					</fmt:formatNumber></strong></p>
 	                        </div>
 	                    </li>
                     </c:forEach>
