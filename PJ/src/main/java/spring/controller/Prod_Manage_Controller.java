@@ -22,7 +22,7 @@ import spring.service.admin.ProductServiceImpl;
 import spring.service.admin.SaveFileService;
 
 @Controller
-public class HomeController_koj {
+public class Prod_Manage_Controller {
    
 
    private int listCount = 5;//페이지당 보여줄 업체 수

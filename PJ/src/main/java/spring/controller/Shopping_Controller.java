@@ -24,7 +24,7 @@ import spring.service.admin.VisitCountDAO;
 import spring.service.mypage.Paging;
 
 @Controller
-public class HomeController_csy {
+public class Shopping_Controller {
 	
 	@Autowired
 	ProductDaoImpl productDaoImpl;

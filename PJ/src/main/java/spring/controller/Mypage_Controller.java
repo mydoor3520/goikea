@@ -30,7 +30,7 @@ import spring.service.mypage.Paging_mycart;
 import spring.service.mypage.Paging_myshopping;
 
 @Controller
-public class HomeController_pjh {
+public class Mypage_Controller {
 
 	
 	
@@ -48,17 +48,16 @@ public class HomeController_pjh {
 	private UserService userService;
 	@Autowired
 	private SendEmail send_email;
-	/**
-	 * 단순히 로그인 입장
-	 */
+	
+	
+	//단순 로그인 입장
 	@RequestMapping(value="/signin", method=RequestMethod.GET)
 	public String login() {
 		return "sign/signin";
 	}
-	/**
-	 * 로그인 입력했을때 구동되는 컨트롤러
-	 * 
-	 */
+	
+	
+	// 로그인 입력했을때 구동되는 컨트롤러
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String go_login(@RequestParam String id, @RequestParam String pw) throws NoSuchAlgorithmException {
 		int idcount = udao.chk_id(id);
@@ -83,21 +82,8 @@ public class HomeController_pjh {
 			infomap.put("no", user.getNo());
 			
 			if(login) {
-				
 				session.setAttribute("user_no", user.getNo());
-				session.setAttribute("grade", user.getGrade());
-				session.setAttribute("id", user.getId());
-				session.setAttribute("name", user.getName());
-				session.setAttribute("email", user.getEmail());
-				session.setAttribute("phone", user.getPhone());
-				session.setAttribute("point", user.getPoint());
-				session.setAttribute("post", user.getPost());
-				session.setAttribute("addr1", user.getAddr1());
-				session.setAttribute("addr2", user.getAddr2());
-
-				
-				//아이디 저장 쿠키는 추후 구현
-				System.out.println(session);
+				session.setAttribute("grade", user.getGrade());				
 				return "redirect:home";
 			}else {
 				return "sign/signin_fail";

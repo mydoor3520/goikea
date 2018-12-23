@@ -28,7 +28,7 @@ import spring.service.admin.Paging_user;
 import spring.service.admin.UserService;
 
 @Controller
-public class HomeController_ktw {
+public class Cust_manage_Contoller {
 	
 	//목록 조회 시 한 페이지 당 몇 개의 자료를 보여줄지, 몇 개의 페이지를 보여줄지 정하세요...
 	//업체와 회원의 칸 크기가 다르므로 페이지 당 보여줄 목록 수는 업체와 회원 별도로 분리함
