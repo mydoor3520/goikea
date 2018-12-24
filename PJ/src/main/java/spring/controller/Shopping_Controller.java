@@ -98,6 +98,8 @@ public class Shopping_Controller {
 		Iterator<String> keySetIterator = map.keySet().iterator();
 		
 		int pay_group = productDaoImpl.load_order_list_nextval()+1;
+		String user_no = session.getAttribute("user_no").toString();
+		User user = udao.get_user_byNo(user_no);
 		
 		String key = keySetIterator.next();  keySetIterator.next();
 		while(keySetIterator.hasNext()) {
@@ -110,11 +112,11 @@ public class Shopping_Controller {
 			parameter.put("p_quantity", map.get(key));
 			parameter.put("p_total", productDaoImpl.load_product_price(Integer.parseInt(map.get("no").toString()))*Integer.parseInt(map.get(key).toString()));
 			parameter.put("user_number", session.getAttribute("user_no"));
-			parameter.put("user_name", session.getAttribute("name"));
-			parameter.put("user_post", session.getAttribute("post"));
-			parameter.put("user_addr1", session.getAttribute("addr1"));
-			parameter.put("user_addr2", session.getAttribute("addr2"));
-			parameter.put("user_phone", session.getAttribute("phone"));			
+			parameter.put("user_name", user.getName());
+			parameter.put("user_post", user.getPost());
+			parameter.put("user_addr1", user.getAddr1());
+			parameter.put("user_addr2", user.getAddr2());
+			parameter.put("user_phone", user.getPhone());			
 			parameter.put("img",productDaoImpl.load_product_img(Integer.parseInt(map.get("no").toString())));
 			
 			productDaoImpl.cart_insert(parameter);

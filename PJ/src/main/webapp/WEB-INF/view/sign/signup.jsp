@@ -56,19 +56,23 @@
 							id="checkaa" required class="id_class"
 							style="ime-mode: disabled; text-transform: lowercase;"
 							placeholder="한글X/영문/숫자 4~20" required autofocus>
-							<button class="button" onclick="checkId()">아이디중복체크</button></td>
+							<button class="button" onclick="checkId()" style="padding:4px;"
+							>아이디중복체크</button></td>
 					</tr>
 
 					<tr>
 						<td>비밀번호</td>
 						<td><input type="password" name="pw" required id="pass"
-							oninput="checkPwd()" placeholder="한글X/영문,특수문자,숫자 포함 8~20"></td>
+							oninput="checkPwd()" placeholder="한글X/영문,특수문자,숫자 포함 8~20"
+							style="width: 250px;"
+							></td>
 					</tr>
 					<tr>
 						<td>비번 확인</td>
 						<td><input type="password" placeholder="비밀번호 재입력"
 							name="psw-repeat" required class="pass" id="repwd"
-							oninput="checkPwd()">
+							style="width: 250px;" oninput="checkPwd()"
+							>
 					</tr>
 					<tr>
 						<td></td>

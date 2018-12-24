@@ -26,8 +26,8 @@
 	        <p class="p14">아래 주문사항을 확인해주세요. 곧, 확인 이메일이 발송됩니다.</p>
 	        <br>
 	        <p class="p20">입금정보</p>
-	        <p style="font-family:'Montserrat';font-size:50px;">1002-948-531896</p>
-	        <p style="font-family:'Montserrat';font-size:30px;font-weight:bold">우리은행, 조세영</p>
+	        <p style="font-family:'Montserrat';font-size:50px;">957501-01-239665</p>
+	        <p style="font-family:'Montserrat';font-size:30px;font-weight:bold">국민은행, 박정호</p>
 	        <br><hr><br>
 			<c:set var = "sum" value = "0" />
 			<c:set var = "chk_name" value="" />

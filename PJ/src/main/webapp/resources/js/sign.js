@@ -91,6 +91,13 @@
 			$("#signupbtn").css("background-color", "#aaaaaa");
 
 			idCheck = 0;
+			modal({
+				type: 'alarm',
+				title: '아이디',
+				text: '아이디는 최소 4자 이상 입력하셔야 합니다',
+				callback: function(result) {
+				}
+			});
 			return false;
 		} else {
 			$.ajax({
@@ -105,9 +112,23 @@
 						$("#signupbtn").prop("disabled", true);
 						$("#signupbtn").css("background-color", "#aaaaaa");
 						idCheck = 0;
+						modal({
+							type: 'alarm',
+							title: '아이디',
+							text: '아이디를 입력하세요',
+							callback: function(result) {
+							}
+						});
 					} else if (data == '0') {
 						$("#checkaa").css("background-color", "#B0F6AC");
 						idCheck = 1;
+						modal({
+							type: 'alarm',
+							title: '아이디',
+							text: '사용할 수 있는 아이디입니다',
+							callback: function(result) {
+							}
+						});
 						if (idCheck == 1 && pwdCheck == 1 && phoneCheck == 1 && emailCheck == 1 &&
 								dnsCheck == 1 && addrCheck == 1) {
 							$("#signupbtn").prop("disabled", false);
@@ -115,6 +136,13 @@
 
 						}
 					} else if (data == '1') {
+						modal({
+							type: 'alarm',
+							title: '아이디',
+							text: '존재하는 아이디입니다 사용할 수 없습니다',
+							callback: function(result) {
+							}
+						});
 						$("#signupbtn").prop("disabled", true);
 						$("#signupbtn").css("background-color", "#aaaaaa");
 						$("#checkaa").css("background-color", "#FFCECE");

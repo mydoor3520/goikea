@@ -151,6 +151,7 @@
 	<select id="getUserNo_order" parameterType="int" resultType="int">
 		select user_number from order_list where order_num=#{order_num}
 	</select>
+	
 	<!-- 방문자 통계 -->
 	<insert id="insertVisitor" parameterType="map">
 		INSERT INTO TB_VISITOR VALUES(VISITOR_SEQ.NEXTVAL, #{VISIT_IP}, SYSDATE, #{VISIT_SESSION})

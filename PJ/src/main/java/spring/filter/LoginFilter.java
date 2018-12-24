@@ -12,9 +12,7 @@ public class LoginFilter extends HandlerInterceptorAdapter{
 		@Override
 		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 				throws Exception {
-			System.out.println("필터실행?");
 			if(null==request.getSession().getAttribute("user_no")) {
-				System.out.println("필터쫌!!");
 				response.sendRedirect("../signin");
 				return false;
 			}else {

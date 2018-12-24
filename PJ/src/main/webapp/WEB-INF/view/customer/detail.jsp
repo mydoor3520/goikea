@@ -139,7 +139,6 @@
         		$("#confirm_cart").click(function() {
         			var session_user_id = "<%=(String)session.getAttribute("user_no")%>"
                  	
-        			
         			if(session_user_id=="null"){
 	        			modal({
 	        				type: 'confirm',
