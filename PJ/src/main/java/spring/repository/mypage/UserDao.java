@@ -18,13 +18,7 @@ public class UserDao {
 	public User get_user_byNo(String no) {
 		return sqlSession.selectOne("getuser", no);
 	}
-	
-	public int chk_id(String id) {
-		System.out.println("날아가는 아이디 : " +id);
-		System.out.println("결과"+(int)sqlSession.selectOne("chk_id", id));
-		return sqlSession.selectOne("chk_id", id);
-	}
-	
+		
 	public int chk_id_email(User user) {
 		return sqlSession.selectOne("chk_id_email", user);
 	}

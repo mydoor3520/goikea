@@ -15,10 +15,10 @@
         	
         	#ul1{list-style: none; padding: 0;}
         	#ul1 > .first{display: inline-block;width:50%;height: 360px;background-color: #f6f6f6;font-size:14px;vertical-align: top;font-family:'Raleway';line-height: 30px;}
-        	#ul1 > .second{display: inline-block;width:50%;}
+        	#ul1 > .second{display: inline-block;width:50%;height: 360px;}
         	
         	#ul2{list-style: none; padding: 0;}
-        	#ul2 > .first{display: inline-block;width:50%;font-size:16px;}
+        	#ul2 > .first{display: inline-block;width:50%;font-size:16px;height: 360px;}
         	#ul2 > .second{display: inline-block;width:50%;height: 360px;background-color: #b5b1ad;font-family:'Raleway';font-size:30px;letter-spacing:10px;;color:white;vertical-align: top;}
         	
         	#white-box{border:2px solid white;font-size: 20px;width:150px;height:30px;margin: 0 auto;cursor:pointer;line-height: 30px;text-align:center;padding-left: 10px;}
@@ -64,12 +64,12 @@
 	        			sunt in culpa qui<br>officiadeserunt mollit anim id est laborum.</p>
         			</li>
         			<li class="second">
-        				<img src="${pageContext.request.contextPath }/resources/images/bigger/top.jpg" style="width: 640px">
+        				<img src="${pageContext.request.contextPath }/resources/images/bigger/top.jpg" style="width: 100%;  height:100%;">
         			</li>
         		</ul>
         		<ul id="ul2">
         			<li class="first">
-        				<img src="${pageContext.request.contextPath }/resources/images/bigger/bot.png" style="width: 640px">
+        				<img src="${pageContext.request.contextPath }/resources/images/bigger/bot.png" style="width: 100%;  height:100%;">
         			</li>
         			<li class="second">
         				<br><br><br>BUY NOW<br><br>WE HAVE 10% SALE<br><br>

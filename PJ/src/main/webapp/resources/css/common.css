@@ -2,7 +2,7 @@
 @charset "UTF-8";
 
 /*outer*/
-body{margin: 0 auto;padding-top: 10px;font-family: 'Nanum Gothic'; width: 100%;}
+body{margin: 0 auto;padding-top: 10px;font-family: 'Nanum Gothic'; width: 90%;}
 .empty-row{height: 10px;}
 .empty-row100{height: 100px;}
 

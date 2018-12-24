@@ -53,9 +53,10 @@
 					<tr>
 						<td>아이디</td>
 						<td class="id_class"><input type="text" name="id"
-							id="checkaa" required class="id_class" oninput="checkId()"
+							id="checkaa" required class="id_class"
 							style="ime-mode: disabled; text-transform: lowercase;"
-							placeholder="한글X/영문/숫자 4~20" required autofocus></td>
+							placeholder="한글X/영문/숫자 4~20" required autofocus>
+							<button class="button" onclick="checkId()">아이디중복체크</button></td>
 					</tr>
 
 					<tr>

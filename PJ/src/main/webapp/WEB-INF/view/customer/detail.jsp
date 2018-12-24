@@ -16,7 +16,7 @@
         	input[type=number]::-webkit-outer-spin-button,
             input[type=number]::-webkit-inner-spin-button{-webkit-appearance: none;}
             
-            .section > .info{width: 1280px;margin-top: 10px;}
+            .section > .info{width: 1280px;margin-top: 10px; margin: 0 auto;}
             .section > .info > .left-content{font-family: 'Nanum Gothic'; width: 398px;height: 398px;display: inline-block;margin: 0 10px;vertical-align: top;}
             
             .section > .info > .mid-content{font-family: 'Nanum Gothic'; width: 398px;height: 398px;display: inline-block;margin: 0 10px;vertical-align: top;text-align: center;}
@@ -47,11 +47,11 @@
             .section > .info > .right-content > .list > .more{text-align: center;line-height: 50px;margin-top: 36px;}
             .section > .info > .right-content > .list > .more > .more_btn{height: 50px;width: 200px; border: 1px solid green;display: inline-block;margin-bottom:0;background-color:white;cursor: pointer;}
             
-            .section > .caution_1{width: 1280px; height: 150px;text-align: left;vertical-align: middle;display: table-cell;padding-left: 20px;background-color: #45454F;}
+            .section > .caution_1{width: 1280px; height: 150px;text-align: left;vertical-align: middle;margin:0 auto;padding-left: 20px;background-color: #45454F;}
             .section > .caution_1 > img{display: inline-block}
             .section > .caution_1 > ul{display:inline-block;font-family: 'Nanum Gothic';font-size: 13px;margin: 0;padding-left: 30px;list-style: none;line-height: 25px;color: white;}
             
-            .section > .caution_2{border: 5px solid gray;width: 1270px; height: 150px;text-align: left;vertical-align: middle;display: table-cell;padding-left: 20px;}
+            .section > .caution_2{border: 5px solid gray;width: 1270px; height: 150px;text-align: left;vertical-align: middle;margin:0 auto;padding-left: 20px;}
             .section > .caution_2 > img{display: inline-block}
             .section > .caution_2 > ul{display:inline-block;font-family: 'Nanum Gothic';font-size: 13px;margin: 0;padding-left: 30px;list-style: none;line-height: 25px;}
             

@@ -108,7 +108,8 @@
 					} else if (data == '0') {
 						$("#checkaa").css("background-color", "#B0F6AC");
 						idCheck = 1;
-						if (idCheck == 1 && pwdCheck == 1 && phoneCheck == 1 && emailCheck == 1 && dnsCheck == 1 && addrCheck == 1) {
+						if (idCheck == 1 && pwdCheck == 1 && phoneCheck == 1 && emailCheck == 1 &&
+								dnsCheck == 1 && addrCheck == 1) {
 							$("#signupbtn").prop("disabled", false);
 							$("#signupbtn").css("background-color", "#4CAF50");
 

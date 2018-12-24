@@ -60,7 +60,7 @@ public class Mypage_Controller {
 	// 로그인 입력했을때 구동되는 컨트롤러
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String go_login(@RequestParam String id, @RequestParam String pw) throws NoSuchAlgorithmException {
-		int idcount = udao.chk_id(id);
+		int idcount = sqlSession.selectOne("chk_id", id);
 		
 		if(idcount<1) {
 			return "sign/signin_fail";
@@ -150,7 +150,7 @@ public class Mypage_Controller {
 		map.put("pw", realPW);		//해싱한 비밀번호 삽입
 		map.put("loop_pw", loop);	//랜덤 루프값 삽입
 		map.put("salt_pw", salt);	//솔트값 삽	입
-		map.put("no", no);	//솔트값 삽	입
+		map.put("no", no);	
 		
 		sqlSession.update("change_pw", map);
 	}
@@ -158,6 +158,7 @@ public class Mypage_Controller {
 	@RequestMapping("/pw_find")
 	public String pw_find() {return "sign/pw_find";}
 	
+	//비밀번호 찾기시 조회
 	@RequestMapping(value="/chk_id_email", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public int chk_id_email(User user, String id, String email) throws NoSuchAlgorithmException {
@@ -215,8 +216,7 @@ public class Mypage_Controller {
 	@RequestMapping(value="/chk_id", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public int chk_id(@RequestParam String id) throws NoSuchAlgorithmException {
-		System.out.println("췍");
-		return udao.chk_id(id);
+		return sqlSession.selectOne("chk_id", id);
 	}
 	
 	@RequestMapping(value="/customer_out", method = {RequestMethod.GET, RequestMethod.POST} )

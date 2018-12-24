@@ -17,7 +17,6 @@ public class DatabaseConfiguration {
 	public DataSource dataSource(){
 		BasicDataSource source = new BasicDataSource();
 		source.setDriverClassName("oracle.jdbc.OracleDriver");
-		//source.setUrl("jdbc:oracle:thin:@192.168.6.37:1521:xe");
 		source.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
 		source.setUsername("sw51");
 		source.setPassword("sw51");
